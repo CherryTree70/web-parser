@@ -1,0 +1,42 @@
+﻿@using WebParser.Models
+@model WebParser.Models.Response
+@{
+    ViewBag.Title = "ResponseResult";
+}
+
+<body onload="countHtmlTags()">
+    <div id="FF"></div>
+    @if (!string.IsNullOrEmpty(Model.Title))
+    {
+        <h3>Title: @Model.Title</h3>
+    }
+    @if (!string.IsNullOrEmpty(Model.Author))
+    {
+        <h3>Author: @Model.Author</h3>
+    }
+    @if (!string.IsNullOrEmpty(Model.Content))
+    {
+        <h6 id="Content">@Model.Content</h6>
+    }
+    <h3>Date: @Model.DatePublished</h3>
+
+    @if (!string.IsNullOrEmpty(Model.ImageUrl))
+    {
+        <h3>Image: @Model.ImageUrl</h3>
+    }
+    @if (!string.IsNullOrEmpty(Model.Dek))
+    {
+        <h3>Dek: @Model.Dek</h3>
+    }
+    @if (!string.IsNullOrEmpty(Model.NextPageUrl))
+    {
+        <h3>Next page url: @Model.NextPageUrl</h3>
+    }
+    <h3>Url: @Model.Url</h3>
+    <h3>Domain: @Model.Domain</h3>
+    <h3>Excerpt: @Model.Excerpt</h3>
+    <h3>Word count: @Model.WordCount</h3>
+    <h3>Total pages: @Model.TotalPages</h3>
+    <h3>Rendered pages: @Model.RenderedPages</h3>
+</body>
+
