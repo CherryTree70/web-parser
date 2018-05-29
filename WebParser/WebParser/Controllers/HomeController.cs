@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -16,8 +17,12 @@ using WebParser.Models;
 
 namespace WebParser.Controllers
 {
+    
     public class HomeController : Controller
     {
+
+        static UrlQueue q = new UrlQueue();
+
 
         [HttpGet]
         public ActionResult Index()
@@ -30,6 +35,7 @@ namespace WebParser.Controllers
 
             if (ModelState.IsValid)
             {
+                
                 var request = (HttpWebRequest)WebRequest.Create("https://mercury.postlight.com/parser?url=" + u.Url);
                 request.ContentType = "application / json";
                 request.Headers.Add("x-api-key", "OaWQ6uUJWAve76eQ69vEvaeFs2OCUFjA5q8cgqYC");
@@ -41,28 +47,17 @@ namespace WebParser.Controllers
                     MissingMemberHandling = MissingMemberHandling.Ignore
                 };
                 var response1 = JsonConvert.DeserializeObject<Response>(responseString, settings);
+                var lastUsedUlrsList = q.OperateOnQueue(u.Url);
+                ViewBag.ListOfLastUrls = lastUsedUlrsList;
 
-                
-                HttpCookieCollection cok = new HttpCookieCollection();
-                HttpCookie myCookie = new HttpCookie(u.Url);
-                cok.Set(myCookie);
-                
+
+
 
                 return View("ResponseResult", response1);
 
             }
             return View();
 
-        }
-
-        public static IHtmlString ToJson(HtmlHelper helper, object obj)
-        {
-            var settings = new JsonSerializerSettings
-            {
-                ContractResolver = new CamelCasePropertyNamesContractResolver()
-            };
-            settings.Converters.Add(new JavaScriptDateTimeConverter());
-            return helper.Raw(JsonConvert.SerializeObject(obj, settings));
         }
 
 

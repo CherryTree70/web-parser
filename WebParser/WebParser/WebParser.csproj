@@ -151,6 +151,7 @@
     </Compile>
     <Compile Include="Models\CorrectUrl.cs" />
     <Compile Include="Models\Response.cs" />
+    <Compile Include="Models\UrlQueue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

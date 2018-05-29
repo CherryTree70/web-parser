@@ -2,10 +2,14 @@
 @model WebParser.Models.Response
 @{
     ViewBag.Title = "ResponseResult";
+   
 }
-
 <body onload="countHtmlTags()">
-    <div id="FF"></div>
+    
+    @foreach (var lasturl in @ViewBag.ListOfLastUrls)
+    {
+        <div>"@lasturl"</div>
+    }
     @if (!string.IsNullOrEmpty(Model.Title))
     {
         <h3>Title: @Model.Title</h3>
@@ -18,7 +22,7 @@
     {
         <h6 id="Content">@Model.Content</h6>
     }
-    @if (Model.DatePublished.ToString()!= "01.01.0001 00:00:00" )
+    @if (Model.DatePublished.ToString() != "01.01.0001 00:00:00")
     {
         <h3>@Model.DatePublished</h3>
     }
@@ -34,12 +38,14 @@
     {
         <h3>Next page url: @Model.NextPageUrl</h3>
     }
-    <h3>Url: @Model.Url</h3>
+
+    <h3 id="url">@Model.Url</h3>
     <h3>Domain: @Model.Domain</h3>
     <h3>Excerpt: @Model.Excerpt</h3>
     <h3>Word count: @Model.WordCount</h3>
     <h3>Total pages: @Model.TotalPages</h3>
     <h3>Rendered pages: @Model.RenderedPages</h3>
     <div id="TopHtml"></div>
-</body>
 
+
+</body>

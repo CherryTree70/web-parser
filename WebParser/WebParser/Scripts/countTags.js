@@ -1,4 +1,5 @@
-﻿function countHtmlTags() {
+﻿
+function countHtmlTags() {
 
     var stringWebParser = document.getElementById("Content").textContent;
     var tag;
@@ -13,17 +14,14 @@
         tags[tag]++;
         }
     });
-    sortObject(tags);
 
-}
-function sortObject(obj) {
     var arr = [];
     var prop;
-    for (prop in obj) {
-        if (obj.hasOwnProperty(prop)) {
+    for (prop in tags) {
+        if (tags.hasOwnProperty(prop)) {
             arr.push({
                 'key': prop,
-                'value': obj[prop]
+                'value': tags[prop]
             });
         }
     }
@@ -32,39 +30,28 @@ function sortObject(obj) {
     });
     var counter = 0;
     var tmp = [];
-    for (var k in arr) {
-        if (arr.hasOwnProperty(k))
+    for (var sortedTag in arr) {
+        if (arr.hasOwnProperty(sortedTag))
         {
-            tmp.push(arr[k]);
+            tmp.push(arr[sortedTag]);
             if (counter === 9) break;
             counter++;
         }
         
         
     }
-    var e;
     var html = "<table border='1|1'>";
-    for (e in tmp) {
-        if (arr.hasOwnProperty(e)) {
+    for (var finalTag in tmp) {
+        if (arr.hasOwnProperty(finalTag)) {
             html += "<tr>";
-            html += "<td>" + tmp[e].key + "</td>";
-            html += "<td>" + tmp[e].value + "</td>";
+            html += "<td>" + tmp[finalTag].key + "</td>";
+            html += "<td>" + tmp[finalTag].value + "</td>";
         }
         
         
     }
-
     html += "</table>";
     document.getElementById("TopHtml").innerHTML = html;
-    
-    
-    
-   
-    
-
 }
-
-
-
 
 
