@@ -16,7 +16,7 @@ namespace WebParser.Models
         [JsonProperty("author")]
         public string Author { get; set; }
         [JsonProperty("date_published")]
-        public DateTime DatePublished { get; set; }
+        public DateTime DatePublished { get; set; } = DateTime.MinValue;
         [JsonProperty("lead_image_url")]
         public string ImageUrl { get; set; }
         [JsonProperty("dek")]

@@ -35,11 +35,19 @@ namespace WebParser.Controllers
                 request.Headers.Add("x-api-key", "OaWQ6uUJWAve76eQ69vEvaeFs2OCUFjA5q8cgqYC");
                 var response = (HttpWebResponse)request.GetResponse();
                 var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
-                var response1 = JsonConvert.DeserializeObject<Response>(responseString);
-                //var s = JsonConvert.DeserializeObject<Response>(responseString).Content;
-                //HtmlDocument doc = new HtmlDocument();
-                //doc.Load(s);
-                //Console.WriteLine(doc);
+                var settings = new JsonSerializerSettings
+                {
+                    NullValueHandling = NullValueHandling.Ignore,
+                    MissingMemberHandling = MissingMemberHandling.Ignore
+                };
+                var response1 = JsonConvert.DeserializeObject<Response>(responseString, settings);
+
+                
+                HttpCookieCollection cok = new HttpCookieCollection();
+                HttpCookie myCookie = new HttpCookie(u.Url);
+                cok.Set(myCookie);
+                
+
                 return View("ResponseResult", response1);
 
             }

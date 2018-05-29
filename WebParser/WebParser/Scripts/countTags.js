@@ -1,12 +1,11 @@
 ﻿function countHtmlTags() {
-    var key;
+
     var stringWebParser = document.getElementById("Content").textContent;
     var tag;
     var tags = [];
-    var tmp = [];
     var parser = new DOMParser();
     var domWebParser = parser.parseFromString(stringWebParser, "text/html");
-    domWebParser.querySelectorAll('*').forEach(function (node) {
+    domWebParser.querySelectorAll("*").forEach(function (node) {
         tag = node.tagName.toLowerCase();
         if (!tags[tag]) {
         tags[tag] = 1;
@@ -32,14 +31,37 @@ function sortObject(obj) {
         return b.value - a.value;
     });
     var counter = 0;
+    var tmp = [];
     for (var k in arr) {
-        var q = arr[k];
-        document.write(q.key, q.value);
-        if (counter === 9) break;
-        counter++;
+        if (arr.hasOwnProperty(k))
+        {
+            tmp.push(arr[k]);
+            if (counter === 9) break;
+            counter++;
+        }
+        
         
     }
-  
+    var e;
+    var html = "<table border='1|1'>";
+    for (e in tmp) {
+        if (arr.hasOwnProperty(e)) {
+            html += "<tr>";
+            html += "<td>" + tmp[e].key + "</td>";
+            html += "<td>" + tmp[e].value + "</td>";
+        }
+        
+        
+    }
+
+    html += "</table>";
+    document.getElementById("TopHtml").innerHTML = html;
+    
+    
+    
+   
+    
+
 }
 
 

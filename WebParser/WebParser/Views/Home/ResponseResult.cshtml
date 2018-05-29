@@ -18,8 +18,10 @@
     {
         <h6 id="Content">@Model.Content</h6>
     }
-    <h3>Date: @Model.DatePublished</h3>
-
+    @if (Model.DatePublished.ToString()!= "01.01.0001 00:00:00" )
+    {
+        <h3>@Model.DatePublished</h3>
+    }
     @if (!string.IsNullOrEmpty(Model.ImageUrl))
     {
         <h3>Image: @Model.ImageUrl</h3>
@@ -38,5 +40,6 @@
     <h3>Word count: @Model.WordCount</h3>
     <h3>Total pages: @Model.TotalPages</h3>
     <h3>Rendered pages: @Model.RenderedPages</h3>
+    <div id="TopHtml"></div>
 </body>
 
