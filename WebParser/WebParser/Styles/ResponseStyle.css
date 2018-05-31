@@ -1,0 +1,16 @@
+﻿body {
+    background-color: powderblue;
+    text-align: center;
+    font-style: italic
+}
+
+
+
+
+table {
+    border: 1px solid #1C6EA4;
+    background-color: #EEEEEE;
+    width: 60%;
+    text-align: center;
+    border-collapse: collapse;
+}

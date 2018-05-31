@@ -1,12 +1,25 @@
 ﻿@model WebParser.Models.CorrectUrl
 
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Write URL";
 }
 
+<head>
 
-@using (Html.BeginForm())
-{
-    @Html.EditorFor(m=>m)
-    <input type="submit" value="Go"/>
-}
+    <link rel="stylesheet" href="~/Styles/IndexStyle.css">
+
+</head>
+
+<Body>
+
+<h2>Paste the link to see what is in it</h2>
+
+<div>
+    @using (Html.BeginForm())
+    {
+        @Html.EditorFor(m => m)
+        <input type="submit" value="Check this out" />
+    }
+</div>
+
+</Body>
