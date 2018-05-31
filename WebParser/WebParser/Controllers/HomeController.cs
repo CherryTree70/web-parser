@@ -12,6 +12,7 @@ namespace WebParser.Controllers
     {
 
         static UrlQueue myUrlQueue = new UrlQueue();
+        private Response _finalResponse;
 
 
         [HttpGet]
@@ -21,15 +22,15 @@ namespace WebParser.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(CorrectUrl u)
+        public ActionResult Index(CorrectUrl userUrl)
         {
 
             if (ModelState.IsValid)
             {
-                
-                var request = (HttpWebRequest)WebRequest.Create("https://mercury.postlight.com/parser?url=" + u.Url);
+                ApiKey key = new ApiKey();
+                var request = (HttpWebRequest)WebRequest.Create("https://mercury.postlight.com/parser?url=" + userUrl.Url);
                 request.ContentType = "application / json";
-                request.Headers.Add("x-api-key", "OaWQ6uUJWAve76eQ69vEvaeFs2OCUFjA5q8cgqYC");
+                request.Headers.Add("x-api-key", key.GetKey());
                 var response = (HttpWebResponse)request.GetResponse();
                 var responseString = new StreamReader(response.GetResponseStream()).ReadToEnd();
                 var settings = new JsonSerializerSettings
@@ -37,19 +38,14 @@ namespace WebParser.Controllers
                     NullValueHandling = NullValueHandling.Ignore,
                     MissingMemberHandling = MissingMemberHandling.Ignore
                 };
-                var response1 = JsonConvert.DeserializeObject<Response>(responseString, settings);
-                var lastUsedUlrsList = myUrlQueue.OperateOnQueue(u.Url);
+                _finalResponse = JsonConvert.DeserializeObject<Response>(responseString, settings);
+                var lastUsedUlrsList = myUrlQueue.OperateOnQueue(userUrl.Url);
                 ViewBag.ListOfLastUrls = lastUsedUlrsList;
 
-
-                return View("ResponseResult", response1);
+                return View("ResponseResult", _finalResponse);
 
             }
             return View();
-
         }
-
-
-
     }
 }

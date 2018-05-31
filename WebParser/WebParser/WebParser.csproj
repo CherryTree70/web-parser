@@ -149,6 +149,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ApiKey.cs" />
     <Compile Include="Models\CorrectUrl.cs" />
     <Compile Include="Models\Response.cs" />
     <Compile Include="Models\UrlQueue.cs" />
@@ -178,8 +179,8 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Styles\IndexStyle.css" />
-    <Content Include="Styles\ResponseStyle.css" />
+    <Content Include="Content\IndexStyle.css" />
+    <Content Include="Content\ResponseStyle.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

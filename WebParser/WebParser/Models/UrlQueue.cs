@@ -9,26 +9,26 @@ namespace WebParser.Models
     public class UrlQueue
     {
         List<String> lista = new List<string>();
-        public Queue q;
+        private Queue queue;
         public UrlQueue()
         {
-           q = new Queue();
+           queue = new Queue();
 
         }
 
         public List<String> OperateOnQueue(string lastUrl)
         {
-            if (q.Count < 5)
+            if (queue.Count < 5)
             {
-                q.Enqueue(lastUrl);
+                queue.Enqueue(lastUrl);
             }
             else
             {
-                q.Dequeue();
-                q.Enqueue(lastUrl);
+                queue.Dequeue();
+                queue.Enqueue(lastUrl);
             }
             lista.Clear();
-            foreach (var a in q)
+            foreach (var a in queue)
             {
                 lista.Add(a.ToString());
             }
