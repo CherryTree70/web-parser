@@ -1,27 +1,17 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Net;
-using System.Net.Http;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.Script.Serialization;
-using HtmlAgilityPack;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Serialization;
 using WebParser.Models;
 
 
 namespace WebParser.Controllers
 {
-    
+
     public class HomeController : Controller
     {
 
-        static UrlQueue q = new UrlQueue();
+        static UrlQueue myUrlQueue = new UrlQueue();
 
 
         [HttpGet]
@@ -29,6 +19,7 @@ namespace WebParser.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public ActionResult Index(CorrectUrl u)
         {
@@ -47,10 +38,8 @@ namespace WebParser.Controllers
                     MissingMemberHandling = MissingMemberHandling.Ignore
                 };
                 var response1 = JsonConvert.DeserializeObject<Response>(responseString, settings);
-                var lastUsedUlrsList = q.OperateOnQueue(u.Url);
+                var lastUsedUlrsList = myUrlQueue.OperateOnQueue(u.Url);
                 ViewBag.ListOfLastUrls = lastUsedUlrsList;
-
-
 
 
                 return View("ResponseResult", response1);

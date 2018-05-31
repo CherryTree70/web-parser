@@ -1,19 +1,19 @@
 ﻿body {
     background-color: powderblue;
+    font-style: italic;
 }
 
 div {
     text-align: center;
 }
 
-h2 {
+h1 {
     color: darkblue;
 }
 
 input {
     border-radius: 10px;
     margin-top: 10px;
-    width: 1500px;
+    width: 700px;
     background: khaki;
-    
 }

@@ -1,5 +1,6 @@
 ﻿@using WebParser.Models
 @model WebParser.Models.Response
+
 @{
     ViewBag.Title = "Your Page";
    
@@ -7,75 +8,85 @@
 
 <head>
     <link rel="stylesheet" href="~/Styles/ResponseStyle.css">
-   
 </head>
+
 <body onload="countHtmlTags()">
-    <h4>Last time you were looking there: </h4>
+    
+    @if (!string.IsNullOrEmpty(Model.Title))
+    {
+        <h1>@Model.Title</h1>
+    }
+
+    @if (!string.IsNullOrEmpty(Model.Excerpt))
+    {
+        <h4>@Model.Excerpt</h4>
+    }
+
+    @if (!string.IsNullOrEmpty(Model.Author))
+    {
+        <h4>Written by @Model.Author</h4>
+    }
+
+    @if (Model.DatePublished.ToString() != "01.01.0001 00:00:00")
+    {
+        <h4> In @Model.DatePublished</h4>
+    }
+
+    @if (!string.IsNullOrEmpty(Model.WordCount.ToString()))
+    {
+        <h4>There are @Model.WordCount words!</h4>
+    }
+
+    @if (!string.IsNullOrEmpty(Model.ImageUrl))
+    {
+        <h4>There is even image: @Model.ImageUrl</h4>
+    }
+
+    @if (!string.IsNullOrEmpty(Model.Url))
+    {
+        <h4>This is url of website: @Model.Url</h4>
+    }
+
+    @if (!string.IsNullOrEmpty(Model.Domain))
+    {
+        <h4>And domain: @Model.Domain</h4>
+    }
+
+    @if (!string.IsNullOrEmpty(Model.Dek))
+    {
+        <h4>Dek: @Model.Dek</h4>
+    }
+
+    @if (!string.IsNullOrEmpty(Model.NextPageUrl))
+    {
+        <h4>Next page url: @Model.NextPageUrl</h4>
+    }
+
+    @if (!string.IsNullOrEmpty(Model.TotalPages.ToString()))
+    {
+        <h4>Total pages: @Model.TotalPages</h4>
+    }
+
+    @if (!string.IsNullOrEmpty(Model.RenderedPages.ToString()))
+    {
+        <h4>Rendered pages: @Model.RenderedPages</h4>
+    }
+   
+    <h1>Last time you were looking that URLs: </h1>
 
     @foreach (var lasturl in @ViewBag.ListOfLastUrls)
     {
-        <div>"@lasturl"</div>
+        <h4>"@lasturl"</h4>
     }
 
-    @if (!string.IsNullOrEmpty(Model.Title))
-    {
-        <h3>This is an article about: @Model.Title</h3>
-    }
-    @if (!string.IsNullOrEmpty(Model.Author))
-    {
-        <h3>Written by @Model.Author</h3>
-    }
-    @if (Model.DatePublished.ToString() != "01.01.0001 00:00:00")
-    {
-        <h3> In @Model.DatePublished</h3>
-    }
-    @if (!string.IsNullOrEmpty(Model.WordCount.ToString()))
-    {
-        <h3>It is written there @Model.WordCount words!</h3>
-    }
-    @if (!string.IsNullOrEmpty(Model.ImageUrl))
-    {
-        <h3>There is even image: @Model.ImageUrl</h3>
-    }
-    @if (!string.IsNullOrEmpty(Model.Url))
-    {
-        <h3>This is url of website: @Model.Url</h3>
-    }
-    @if (!string.IsNullOrEmpty(Model.Domain))
-    {
-        <h3>And domain: @Model.Domain</h3>
-    }
-    <h2>There are more interesting data:</h2>
-    @if (!string.IsNullOrEmpty(Model.Dek))
-    {
-        <h3>Dek: @Model.Dek</h3>
-    }
-    @if (!string.IsNullOrEmpty(Model.NextPageUrl))
-    {
-        <h3>Next page url: @Model.NextPageUrl</h3>
-    }
-    @if (!string.IsNullOrEmpty(Model.Excerpt))
-    {
-        <h3>Excerpt: @Model.Excerpt</h3>
-    }   
-    @if (!string.IsNullOrEmpty(Model.TotalPages.ToString()))
-    {
-        <h3>Total pages: @Model.TotalPages</h3>
-    }
-    @if (!string.IsNullOrEmpty(Model.RenderedPages.ToString()))
-    {
-        <h3>Rendered pages: @Model.RenderedPages</h3>
-    }
-   
-
-    <h2>The most common tags in content: </h2>
+    <h1>The most common tags in content: </h1>
     <div align="center" id="TopHtml"></div>
-
-    @if (!string.IsNullOrEmpty(Model.Content))
-    {
-        <h3>There is our content from website: </h3>
-        <h6 id="Content">@Model.Content</h6>
-    }
-
+    <div id="displaycontent">
+        @if (!string.IsNullOrEmpty(Model.Content))
+        {
+            <h1>There is content from website: </h1>
+            <h6 id="Content">@Model.Content</h6>
+        }
+    </div>
 
 </body>

@@ -12,14 +12,16 @@
 
 <Body>
 
-<h2>Paste the link to see what is in it</h2>
+    <h1>Paste the link to article to see what is in it</h1>
 
 <div>
+
     @using (Html.BeginForm())
     {
         @Html.EditorFor(m => m)
-        <input type="submit" value="Check this out" />
+        <input type="submit" value="Check this out"/>
     }
+
 </div>
 
 </Body>
